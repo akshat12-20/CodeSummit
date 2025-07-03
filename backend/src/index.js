@@ -1,10 +1,18 @@
-import express from "express";
+import express, { response } from "express";
 import dotenv from "dotenv";
+import authRoutes from "./routes/auth.routes.js";
 
 dotenv.config();
 const port= process.env.PORT || 3000 ;
 
 const app= express();
+app.use(express.json());
+
+app.get('/', (req,res)=>{
+    res.send("Welcome to CodeSummit🔥");
+});
+
+app.use("/api/v1/auth", authRoutes);
 
 app.listen(port, ()=>{
     console.log(`Server is running on port ${port}`);
